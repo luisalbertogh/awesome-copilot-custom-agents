@@ -55,5 +55,5 @@ jobs:
       shell: bash
       run: |
         git status
-        copilot --model=${{ env.COPILOT_MODEL }} --agent=chef --prompt "Provide a new menu plan, please" >> $GITHUB_STEP_SUMMARY
+        copilot --model=${{ env.COPILOT_MODEL }} --agent=chef --allow-all-tools --prompt "Provide a new menu plan, please" >> $GITHUB_STEP_SUMMARY
         ls -l
