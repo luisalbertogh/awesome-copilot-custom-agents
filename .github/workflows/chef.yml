@@ -1,0 +1,26 @@
+# This workflow will run the Chef agent periodically and dump a proposed menu plan for the week.
+
+name: Chef Workflow
+
+on:
+  # Manual workflow
+  workflow_dispatch:
+
+# Workflow jobs
+jobs:
+  # Prepare the menu plan
+  cooking:
+    # Run on GH hosted Ubuntu runner
+    runs-on: ubuntu-latest
+
+    # Steps of the job
+    steps:
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+
+    # Setup Node.js environment for GH Copilot CLI installation in next steps
+    - name: Setup Node.js
+      uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f  # v6.1.0
+      with:
+        node-version: '>=22'
