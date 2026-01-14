@@ -24,7 +24,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for GH CLI commands
       COPILOT_MODEL: gpt-4.1
       GIT_AUTHOR_NAME: ${{ github.actor }}
-      GIT_AUTHOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
+      GIT_AUTHOR_EMAIL: "${{ github.actor }}@users.noreply.github.com"
 
     # Steps of the job
     steps:
