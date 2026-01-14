@@ -15,6 +15,7 @@ jobs:
 
     # Steps of the job
     steps:
+    
     # Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
@@ -24,3 +25,11 @@ jobs:
       uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f  # v6.1.0
       with:
         node-version: '>=22'
+
+    # Install GH Copilot CLI
+    - name: Install GitHub Copilot CLI
+      run: npm i -g @github/copilot
+
+    # Test GH Copilot CLI
+    - name: Test GitHub Copilot CLI
+      run: copilot --model=GPT-4.1 --prompt "Where is Salamanca?"
