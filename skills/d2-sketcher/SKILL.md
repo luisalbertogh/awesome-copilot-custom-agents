@@ -1,0 +1,311 @@
+---
+name: d2-sketcher
+description: Guidelines to define technical diagrams in D2 with the desired settings and preferences. Use it when creating D2 diagrams for any technical topic (sequence diagrams, class diagrams, cloud architecture diagrams, etc).
+---
+
+# D2 Sketcher
+
+You are an expert in creating technical diagrams using D2 syntax. Your role is to help define and generate D2 diagrams based on specific requirements and preferences.
+
+## When to Use This Skill
+
+Use this skill whenever you need to create technical diagrams in D2 format, including but not limited to:
+
+- System architecture diagrams
+- Sequence diagrams
+- Class diagrams
+- Cloud infrastructure diagrams
+- Data flow diagrams
+
+**Do not use this skill** if the diagrams need to be created using a different tool or format that it is not D2.
+
+## Prerequisites
+
+Do not check for D2 binaries or installation. That is out of the scope of this skill.
+
+## Guidelines
+
+The rules defined from this section must be applied when developing D2 diagrams.
+
+### Shapes
+
+Apply these rules for the definition of `shapes`:
+
+- When defining shapes, do it in separate blocks:
+
+    ```text
+    # Good example
+    one: {
+        shape: image
+        label: One
+    }
+
+    other: {
+        label: Other
+    }
+
+    # Bad example
+    SQLite; Cassandra
+    ```
+
+- Use always a `label` as part of the shape definition.
+- Use `image` for the `shape` attribute if there is some image available under the [icons folder](assets/icons/). Browse the subfolders looking for the most propiate image. If none is found, ignore the attribute.
+
+Use the content of the web page in `https://d2lang.com/tour/shapes/` as a reference.
+
+### Connections
+
+Apply these rules for the definition of `connections`:
+
+- Use always directional connections (`->` or `<->` for bidirectionals).
+- Label the connections: `Read Replica 1 -- Read Replica 2: Kept in sync`.
+- If possible, try to group as many connections as possible in the same line:
+
+    ```text
+    # Good example
+    A -> B <- C: Conn 1
+
+    # Bad example
+    A -> B: Conn 1
+    C -> B: Conn 1    
+    ```
+
+- Use `font-size` style for the connections with a minimum value of `35`:
+
+    ```text
+    canvas2.github.dagster-repo -> canvas2.cdp-tooling.ecr-repos: push {
+        style {
+            font-size: 35
+        }
+    }
+    ```
+
+Use the content of the web page in `https://d2lang.com/tour/connections/` as a reference.
+
+### Containers
+
+When defining `containers`, apply these rules:
+
+- Use nested containers to represent hierarchical relationships.
+- Label each container clearly.
+- Use containers to group related components or systems.
+- Keep the same styles for the containers except for the font-size that must be reduced progresively for inner containers:
+
+    ```text
+    # Good example
+    aws-region: {
+        label: AWS Region
+        icon: ./icons/aws/aws_region.svg
+        style: {
+            font-size: 55
+        }
+
+        dagster-cluster: {
+            label: bay-cdp-aurora-cluster
+            icon: ./icons/aws/ecs.svg
+            style: {
+                font-size: 45
+            }
+
+            dagster-agent: {
+                shape: image
+                icon: ./icons/aws/ecs_service.svg
+                label: dagster-hybrid-agent
+                style: {
+                    font-size: 25
+                }
+            }
+        }
+    }
+    ```
+
+- Use attributes like `grid-columns`, `grid-rows`, `horizontal-gap` and `vertical-gap` to lay out the content of the containers in the most proper way.
+
+Use the content of the web page in `https://d2lang.com/tour/containers/` as a reference.
+
+#### Examples of grid diagrams
+
+Use parent containers without label and opacity set to 0 to lay out inner containers:
+
+```text
+canvas1: {
+    label: ""
+    grid-rows: 4
+    style: {
+        opacity: 0
+    }
+
+    container1: {
+        ...
+    }
+
+    container2: {
+        ...
+    }
+
+    container3: {
+        ...
+    }
+
+    container4: {
+        ...
+    }
+}
+```
+
+Use the below tricks to create *invisible spans* that can be used to organize the components of the diagram for better representation:
+
+```text
+# Invisible span
+classes: {
+  invisible: {
+    style.opacity: 0
+    label: a
+  }
+}
+
+canvas1: {
+    label: ""
+    grid-rows: 4
+    style: {
+        opacity: 0
+    }
+
+    container1: {
+        ...
+    }
+
+    pad1.class: invisible
+
+    container3: {
+        ...
+    }
+
+    container4: {
+        ...
+    }
+}
+```
+
+Use the content of the web page in `https://d2lang.com/tour/grid-diagrams/` as a reference.
+
+### Variables and globs
+
+Use variables and globs when they bring some clear benefit, for example to apply common settings to multiple items like containers or shapes:
+
+```text
+# Example for variables
+direction: right
+vars: {
+  server-name: Cat
+}
+
+server1: ${server-name}-1
+server2: ${server-name}-2
+
+server1 <-> server2
+
+# Example for globs
+iphone 10
+iphone 11 mini
+iphone 11 pro
+iphone 12 mini
+
+*.height: 300
+*.width: 140
+*mini.height: 200
+*pro.height: 400
+```
+
+Use the content of the web pages in `https://d2lang.com/tour/vars/` and `https://d2lang.com/tour/globs/` as references for variables and globs respectively.
+
+### Comments
+
+Use comments to explain complex parts of the diagram or to provide context:
+
+```text
+# Comments start with a hash character and continue until the next newline or EOF.
+x -> y
+```
+
+Use the content of the web page in `https://d2lang.com/tour/comments/` as a reference.
+
+**COMPULSORY**: Use a comment for each new shape and connection at least.
+
+### Legends
+
+Use legends if they provide useful information and they do not spoil the composition of the overall diagram:
+
+```text
+vars: {
+  d2-legend: {
+    a: {
+      label: Microservice
+    }
+    b: Database {
+      shape: cylinder
+      style.stroke-dash: 2
+    }
+    a <-> b: Good relationship {
+      style.stroke: red
+      style.stroke-dash: 2
+      style.stroke-width: 1
+    }
+    a -> b: Bad relationship
+    a -> b: Tenuous {
+      target-arrowhead.shape: circle
+    }
+  }
+}
+
+api-1
+api-2
+
+api-1 -> postgres
+api-2 -> postgres
+
+postgres: {
+  shape: cylinder
+}
+postgres -> external: {
+  style.stroke: black
+}
+
+api-1 <-> api-2: {
+  style.stroke: red
+  style.stroke-dash: 2
+}
+api-1 -> api-3: {
+  target-arrowhead.shape: circle
+}
+```
+
+Use the content of the web page in `https://d2lang.com/tour/legend/` as a reference.
+
+### Composition
+
+**Do not compose** multiple boards into a single diagram unless explicitely requested.
+
+## References
+
+Use the below references as valid examples on how to define D2 diagrams for multiple use cases.
+
+### Web pages
+
+Use the content of the web pages from the below list as valid references and examples for multipurpose features when creating D2 diagrams:
+
+- [Simple diagram](https://github.com/terrastruct/d2/blob/master/docs/examples/chess/dia.d2)
+- [Complex system architecture](https://github.com/terrastruct/d2/blob/master/docs/examples/twitter/in.d2)
+
+### Local guides and examples
+
+- [D2 samples](references/d2-samples.md). More valid examples fitting into different use cases. Review all the cases and **select those more suitable for the scenario to depict**.
+
+## In sumary
+
+When creating D2 diagrams:
+
+- Always follow the defined guidelines for shapes, connections, containers, variables, comments, and legends.
+- Use the provided references as examples to ensure clarity, consistency, and effectiveness in your diagrams.
+- Try to use the icons found under `assets/icons` and the corresponding subfolders when defining shapes.
+- Ensure that diagrams are easy to understand and visually appealing.
