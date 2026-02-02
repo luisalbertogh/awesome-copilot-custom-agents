@@ -21,7 +21,11 @@ Use this skill whenever you need to create technical diagrams in D2 format, incl
 
 ## Prerequisites
 
-Do not check for D2 binaries or installation. That is out of the scope of this skill.
+The below prerequisites must be met before attempting the creation or update of the D2 diagrams:
+
+- Do not check for D2 binaries or installation. That is out of the scope of this skill.
+- Use the icons located under the `icons` folder. Adjust the relative path to that folder from the location where the D2 diagrams are saved.
+- Ensure to read the content under the `references` folder for further usage as indicated in this skill.
 
 ## Guidelines
 
@@ -58,7 +62,7 @@ Use an image for the shape only under the following circumstances:
 
 - Based on the item that will be represented with the shape, look into [this table](./references/image-ref.md) and check using the `name` column, if there is some image available for that item:
 
-  For example, for an `AWS Internet Gateway`, there is a row in the table with name equal to `internet_gw` pointing to an available image in `./assets/icons/aws/internet_gw.svg`
+  For example, for an `AWS Internet Gateway`, there is a row in the table with name equal to `internet_gw` pointing to an available image in `../icons/aws/internet_gw.svg`
 
   If there are multiple image formats for the same shape type, use `svg` over any other format.
 
@@ -70,14 +74,14 @@ Use an image for the shape only under the following circumstances:
   # For example
   aws-region: {
       label: AWS Region
-      icon: ./assets/icons/aws/aws_region.svg
+      icon: ../icons/aws/aws_region.svg
       style: {
           font-size: 55
       }
 
       dagster-cluster: {
           label: bay-cdp-aurora-cluster
-          icon: ./assets/icons/aws/ecs.svg
+          icon: ../icons/aws/ecs.svg
           style: {
               font-size: 45
           }
@@ -92,14 +96,14 @@ Use an image for the shape only under the following circumstances:
   # For example
   dagster-cluster: {
       label: bay-cdp-aurora-cluster
-      icon: ./assets/icons/aws/ecs.svg
+      icon: ../icons/aws/ecs.svg
       style: {
           font-size: 45
       }
 
       dagster-agent: {
           shape: image
-          icon: ./assets/icons/aws/ecs_service.svg
+          icon: ../icons/aws/ecs_service.svg
           label: dagster-hybrid-agent
           style: {
               font-size: 25
@@ -110,7 +114,7 @@ Use an image for the shape only under the following circumstances:
 
 - If no proper image is found, ignore the attribute `shape` and the attribute `icon` and do not use any `image` for that shape.
 
-**IMPORTANT** - The path to the `icon` attribute must start always with `./assets/icons/`.
+**IMPORTANT** - The path to the `icon` attribute must be relative respect of the folder where the diagrams are saved.
 
 ### Connections
 
@@ -154,21 +158,21 @@ When defining `containers`, apply these rules:
     # Good example
     aws-region: {
         label: AWS Region
-        icon: ./assets/icons/aws/aws_region.svg
+        icon: ../icons/aws/aws_region.svg
         style: {
             font-size: 55
         }
 
         dagster-cluster: {
             label: bay-cdp-aurora-cluster
-            icon: ./assets/icons/aws/ecs.svg
+            icon: ../icons/aws/ecs.svg
             style: {
                 font-size: 45
             }
 
             dagster-agent: {
                 shape: image
-                icon: ./assets/icons/aws/ecs_service.svg
+                icon: ../icons/aws/ecs_service.svg
                 label: dagster-hybrid-agent
                 style: {
                     font-size: 25
@@ -360,11 +364,21 @@ Use the content of the web pages from the below list as valid references and exa
 
 - [D2 samples](references/d2-samples.md). More valid examples fitting into different use cases. Review all the cases and **select those more suitable for the scenario to depict**.
 
+## Generate image files
+
+When generating an image file for each diagram, use the `SVG` format by default. Run the following command from the terminal:
+
+```bash
+d2 --layout=elk path/to/diagram.d2
+```
+
+> **IMPORTANT:** Do not use any additional flag or parameter, besides the one specified above.
+
 ## In sumary
 
 When creating D2 diagrams:
 
 - Always follow the defined guidelines for shapes, connections, containers, variables, comments, and legends.
 - Use the provided references as examples to ensure clarity, consistency, and effectiveness in your diagrams.
-- Try to use the images found under `assets/icons` and the corresponding subfolders when defining shapes.
+- Try to use the images found under `icons` and the corresponding subfolders when defining shapes.
 - Ensure that diagrams are easy to understand and visually appealing.
