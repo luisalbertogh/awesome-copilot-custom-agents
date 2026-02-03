@@ -21,6 +21,28 @@ The following featured content can be found:
 - Copy the content you wished to use to your local AI environment.
 - Tweak it to your needs and start using it.
 
+### Usage with VS Code and Copilot
+
+I have used these customizations with the below setup:
+
+- VS Code 1.108.2
+- Custom prompts, instructions and agents are copied to `%APPDATA%/Code/User/prompts` (in theory this is configurable using the Copilot settings, but that is the default location for my installation).
+- Custom skill must be copied to `%USERPROFILE%/.copilot/skills`.
+
+If the previous is done:
+
+- **Custom agents** will show up as an agent option from the Copilot console.
+
+    ![Custom agents](./docs/pics/custom-agents.png)
+
+- **Custom prompts and instructions** will be also available from the respective dropdowns in the Copilot console or they can be invoked using the proper syntax (for *prompts*). Custom instructions should be automatically loaded by the agent based on the provided prompt and the custom instructions metadata.
+
+    ![Custom prompt](./docs/pics/custom-prompt.png)
+
+- **Custom skills** will be visible to any agent. Ask the agent to indicate what skills are available, for example.
+
+    ![Custom skills](./docs/pics/ask-skills.png)
+
 ## :scroll: The collection
 
 The following can be found within this repository.
