@@ -1,5 +1,10 @@
 # awesome-copilot-custom-agents
 
+[![awesome-copilot-custom-agents](https://img.shields.io/badge/github-Awesome_Custom_Agents-blue?logo=github)](https://github.com/luisalbertogh/awesome-copilot-custom-agents)
+[![Copilot Agents](https://img.shields.io/badge/Copilot-Agent-586123)](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents?versionId=free-pro-team%40latest&productId=copilot&restPage=reference%2Ccustom-agents-configuration)
+[![Copilot Skill](https://img.shields.io/badge/Copilot-Skill-5865F2)](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills?versionId=free-pro-team%40latest&productId=copilot&restPage=reference%2Ccustom-agents-configuration)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Custom configurations for Copilot agents, instructions, prompts and other beasts :dragon_face:
 
 ## :question:  What is the content about?
