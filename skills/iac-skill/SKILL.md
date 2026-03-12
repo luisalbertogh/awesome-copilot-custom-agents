@@ -15,13 +15,17 @@ Comprehensive Terraform, OpenTofu and Terragrunt guidance covering testing, modu
 
 ## Tools
 
+Use the below tools if available to get **up-to-date documentation and recommended practices** when developing infrastructure for **Azure** and **AWS** Cloud environments.
+
 | Tool | Use For |
-|------|---------|
+| ------ | --------- |
 | `context7/*` | Query up-to-date documentation |
 | `microsoft_docs_search` | Find documentation—concepts, guides, tutorials, configuration |
 | `microsoft_docs_fetch` | Get full page content (when search excerpts aren't enough) |
 | `azureterraformbestpractices` | Get Azure Terraform best practices |
 | `get_azure_bestpractices` | Get Azure best practices guidelines |
+| `aws-knowledge-mcp-server` | AWS best practices |
+| `awslabs.aws-documentation-mcp-server` | AWS up-to-date documentation |
 
 ## When to Use This Skill
 
@@ -60,9 +64,13 @@ When operating in chat mode with these instructions loaded:
 - Maintain minimalist responses and surgical code changes, aligning with the incorporated Taming philosophy.
 - **Planning Files Awareness**: Always check for planning files in the `.terraform-planning-files/` folder (if present). Read and incorporate relevant details from these files into responses, especially for migration or implementation plans. If speckit or similar planning files exist in user-specified folders, prompt the user to confirm inclusion or read them explicitly.
 
+## Code styling
+
+Review [terraform-style-guide.md](references/terraform-style-guide.md) and [terraform-code-patterns.md](references/terraform-code-patterns.md) for code styling and code conventions. In case of some rule being ambiguos, ask for clarification, **do not assume**.
+
 ## Code patterns
 
-These instructions provide IaC-specific guidance for solutions created with Terraform, Opentofu and/or Terragrunt, including how to incorporate and use Azure Verified Modules (AVM).
+These instructions provide IaC-specific guidance for solutions created with Terraform, Opentofu and/or Terragrunt, including how to incorporate and use Azure Verified Modules (AVM) and AWS best practices.
 
 For general Terraform and Opentofu conventions, see [terraform-conventions.md](references/terrafom-conventions.md).
 

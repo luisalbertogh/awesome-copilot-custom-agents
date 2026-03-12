@@ -67,15 +67,15 @@ Use the Terraform code patterns found in [terraform-code-patterns.md](terraform-
 
 ## Azure-Specific Best Practices
 
-Use the `#azureterraformbestpractices` tool to download up-to-date recommendations to work with Terraform for Azure. If the tool cannot be used or it does not retrieve anything, follow the recommendations below:
+If available, use the `#azureterraformbestpractices` tool to download up-to-date recommendations to work with Terraform for Azure. In any case, consider the below best practices when defining infrastructure for the Cloud:
 
 ### Resource Naming and Tagging
 
-- Follow Azure naming conventions. Use the `microsoft-learn` tools to retrieve updated naming conventions.
+- Use the `microsoft-learn` tools to retrieve updated naming conventions.
 - Use consistent region naming and variables for multi-region deployments.
 - Implement consistent tagging.
 
-### Resource Group Strategy
+### Resource Group Strategy for Azure
 
 - Use existing resource groups when specified.
 - Create new resource groups only when necessary.
@@ -84,7 +84,7 @@ Use the `#azureterraformbestpractices` tool to download up-to-date recommendatio
 ### Networking Considerations
 
 - Use NSGs and ASGs appropriately.
-- Implement private endpoints for PaaS services when required, use resource firewall restrictions to restrict public access otherwise.  Comment exceptions where public endpoints are required.
+- Implement private endpoints for PaaS services when required, use resource firewall restrictions to restrict public access otherwise. Comment exceptions where public endpoints are required.
 
 ### Security and Compliance
 
@@ -102,5 +102,37 @@ Use the `#azureterraformbestpractices` tool to download up-to-date recommendatio
 ## State Management
 
 - Use remote backend (Azure Storage) with state locking.
+- Never commit state files to source control.
+- Enable encryption at rest and in transit.
+
+## AWS-Specific Best Practices
+
+If available, use the `#aws__search_documentation` tool to download up-to-date recommendations to work with AWS. In any case, consider the below best practices when defining infrastructure for the Cloud:
+
+### Resource Naming and Tagging
+
+- Use consistent region naming and variables for multi-region deployments.
+- Implement consistent tagging.
+
+### Networking Considerations
+
+- Use security groups appropriately.
+- Implement private endpoints for PaaS services when required, use resource firewall restrictions to restrict public access otherwise. Comment exceptions where public endpoints are required.
+
+### Security and Compliance
+
+- Use IAM roles as a preference.
+- Enable diagnostic settings for audit trails.
+- Follow principle of least privilege.
+
+## Cost Management
+
+- Consider any option that could reduce cost without impacting significantly in performance, realibility or availability (lifecycle policies, housekeeping, etc).
+- Use environment-appropriate sizing (dev vs prod).
+- Assume average cost constraints if not specified.
+
+## State Management
+
+- Use remote backend (S3) with state locking.
 - Never commit state files to source control.
 - Enable encryption at rest and in transit.

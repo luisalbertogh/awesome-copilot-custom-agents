@@ -227,7 +227,7 @@ output "subnet_id" {  # Should be plural "subnet_ids"
 ### Quick Decision Guide
 
 | Scenario | Use | Why |
-|-|--|--|
+| - | -- | -- |
 | Boolean condition (create or don't) | `count = condition ? 1 : 0` | Simple on/off toggle |
 | Simple numeric replication | `count = 3` | Fixed number of identical resources |
 | Items may be reordered/removed | `for_each = toset(list)` | Stable resource addresses |
