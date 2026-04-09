@@ -102,6 +102,7 @@ If available, use the `#azureterraformbestpractices` tool to download up-to-date
 ## State Management
 
 - Use remote backend (Azure Storage) with state locking.
+- Enforce OIDC for backend authentication.
 - Never commit state files to source control.
 - Enable encryption at rest and in transit.
 
@@ -133,6 +134,7 @@ If available, use the `#aws__search_documentation` tool to download up-to-date r
 
 ## State Management
 
-- Use remote backend (S3) with state locking.
+- Use remote backend (S3) with state locking. Prefer S3 state locking over DynamoDB if possible.
+- Enforce OIDC for backend authentication.
 - Never commit state files to source control.
 - Enable encryption at rest and in transit.

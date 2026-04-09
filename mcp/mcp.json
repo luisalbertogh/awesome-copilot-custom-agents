@@ -7,13 +7,6 @@
 				"CONTEXT7_API_KEY": "xxxxxx"
 			}
 		},
-		"github": {
-			"type": "http",
-			"url": "https://api.githubcopilot.com/mcp/readonly",
-			"headers": {
-				"Authorization": "Bearer ${input:github_mcp_pat}"
-			}
-		},
 		"aws-knowledge-mcp-server": {
 			"type": "http",
 			"url": "https://knowledge-mcp.global.api.aws",
@@ -74,6 +67,40 @@
 				"AWS_PROFILE": "default"
 			}
 		},
+		"bedrock-agentcore-mcp-server": {
+			"disabled": false,
+			"timeout": 60,
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"tool",
+				"run",
+				"--from",
+				"awslabs.amazon-bedrock-agentcore-mcp-server@latest",
+				"awslabs.amazon-bedrock-agentcore-mcp-server.exe"
+			],
+			"env": {
+				"FASTMCP_LOG_LEVEL": "ERROR"
+			}
+		},
+		"awslabs.aws-iac-mcp-server": {
+			"disabled": false,
+			"timeout": 60,
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"tool",
+				"run",
+				"--from",
+				"awslabs.aws-iac-mcp-server@latest",
+				"awslabs.aws-iac-mcp-server.exe"
+			],
+			"env": {
+				"FASTMCP_LOG_LEVEL": "ERROR",
+				"AWS_PROFILE": "default",
+				"AWS_REGION": "eu-central-1"
+			}
+		},
 		"microsoft-learn": {
 			"type": "http",
 			"url": "https://learn.microsoft.com/api/mcp"
@@ -87,7 +114,11 @@
                 "server",
                 "start"
             ]
-        }
+        },
+		"strands-agents": {
+			"command": "uvx",
+			"args": ["strands-agents-mcp-server"]
+		}
 	},
 	"inputs": [
 		{
